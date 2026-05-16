@@ -41,11 +41,15 @@ class AnimalList extends Component
             ->where('is_active', true)
             ->whereHas('shelter', fn ($q) => $q->where('status', ShelterStatus::Approved->value))
             ->with(['shelter', 'activeNeeds'])
-            ->latest();
+            ->withCount('activeNeeds');
 
         if ($this->species !== '') {
-            $query->where('species', $this->species);
+            $query->where('species', $this->species)->latest();
+        } else {
+            $query->orderByDesc('active_needs_count')->latest();
         }
+
+
 
         if ($this->city !== '') {
             $query->whereHas('shelter', fn ($q) => $q->where('city', $this->city));

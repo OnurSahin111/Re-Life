@@ -31,12 +31,18 @@
                     class="rounded-full px-4 py-1.5 text-[13px] border {{ $species === '' ? 'bg-sage-600 text-cream-50 border-sage-600' : 'bg-cream-100 text-ink-700 border-cream-300/60 hover:bg-cream-200' }}">
                     Hepsi
                 </button>
-                @foreach(\App\Enums\AnimalSpecies::cases() as $s)
-                    <button wire:click="$set('species', '{{ $s->value }}')"
-                        class="rounded-full px-4 py-1.5 text-[13px] border {{ $species === $s->value ? 'bg-sage-600 text-cream-50 border-sage-600' : 'bg-cream-100 text-ink-700 border-cream-300/60 hover:bg-cream-200' }}">
-                        {{ $s->label() }}
-                    </button>
-                @endforeach
+                
+                <div class="flex items-center bg-cream-100 rounded-full border border-cream-300/60 p-0.5">
+                    <span class="px-3 text-[12px] text-ink-700/60 font-medium">Kediler:</span>
+                    <button wire:click="$set('species', 'cat')" class="rounded-full px-3 py-1 text-[13px] transition-colors {{ $species === 'cat' ? 'bg-sage-600 text-cream-50' : 'text-ink-700 hover:bg-cream-200' }}">Yetişkin</button>
+                    <button wire:click="$set('species', 'kitten')" class="rounded-full px-3 py-1 text-[13px] transition-colors {{ $species === 'kitten' ? 'bg-sage-600 text-cream-50' : 'text-ink-700 hover:bg-cream-200' }}">Yavru</button>
+                </div>
+
+                <div class="flex items-center bg-cream-100 rounded-full border border-cream-300/60 p-0.5">
+                    <span class="px-3 text-[12px] text-ink-700/60 font-medium">Köpekler:</span>
+                    <button wire:click="$set('species', 'dog')" class="rounded-full px-3 py-1 text-[13px] transition-colors {{ $species === 'dog' ? 'bg-sage-600 text-cream-50' : 'text-ink-700 hover:bg-cream-200' }}">Yetişkin</button>
+                    <button wire:click="$set('species', 'puppy')" class="rounded-full px-3 py-1 text-[13px] transition-colors {{ $species === 'puppy' ? 'bg-sage-600 text-cream-50' : 'text-ink-700 hover:bg-cream-200' }}">Yavru</button>
+                </div>
             </div>
 
             <span class="w-px h-5 bg-ink-700/10 mx-1 self-center hidden sm:block"></span>
